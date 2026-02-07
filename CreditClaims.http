@@ -1,4 +1,4 @@
-### Пуляем заявку №1
+### №1
 POST http://localhost:8080/api/credit-claims
 Content-Type: application/json
 
@@ -10,7 +10,7 @@ Content-Type: application/json
     "currentCreditRating": 900
 }
 
-### Пуляем заявку №2
+### №2
 POST http://localhost:8080/api/credit-claims
 Content-Type: application/json
 
@@ -22,7 +22,7 @@ Content-Type: application/json
     "currentCreditRating": 900
 }
 
-### Пуляем заявку №3
+### №3
 POST http://localhost:8080/api/credit-claims
 Content-Type: application/json
 
@@ -34,7 +34,7 @@ Content-Type: application/json
     "currentCreditRating": 900
 }
 
-### Пуляем заявку №4
+### №4
 POST http://localhost:8080/api/credit-claims
 Content-Type: application/json
 
@@ -52,12 +52,12 @@ GET http://localhost:8080/api/credit-claims
 ### Получаем заявку с id=2 (есть в базе) как JSON
 GET http://localhost:8080/api/credit-claims/2
 
-### Получаем заявку с id=6 (нету в базе) как JSON
-GET http://localhost:8080/api/credit-claims/6
+### Получаем заявку с id=7 (нет в базе) как JSON
+GET http://localhost:8080/api/credit-claims/7
 
 ### Получаем статус заявки с id=2 (есть в базе)
 GET http://localhost:8080/api/credit-claims/2/status
 
-### Получаем статус заявки с id=6 (нету в базе)
-GET http://localhost:8080/api/credit-claims/6/status
+### Получаем статус заявки с id=7 (нет в базе)
+GET http://localhost:8080/api/credit-claims/7/status
 
