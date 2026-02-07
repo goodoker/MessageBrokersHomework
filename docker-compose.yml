@@ -1,0 +1,50 @@
+version: '3'
+services:
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      # Настройка режима KRaft (без ZooKeeper)
+      KAFKA_ENABLE_KRAFT: yes
+      KAFKA_PROCESS_ROLES: controller,broker
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:29092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_INTER_BROKER_PROTOCOL_VERSION: 3.0
+      KAFKA_LOG_MESSAGE_FORMAT_VERSION: 3.0
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      CLUSTER_ID: ZLYDEN_UNIQUE_CLUSTER_ID
+      KAFKA_NODE_ID: "1"
+      KAFKA_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
+
+  rabbitmq:
+    image: rabbitmq:management  # образ с интерфейсом управления
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"              # основной AMQP-порт
+      - "15672:15672"            # веб-интерфейс управления
+    environment:
+      RABBITMQ_DEFAULT_USER: guest   # имя пользователя по умолчанию
+      RABBITMQ_DEFAULT_PASS: guest   # пароль по умолчанию
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 30s                  # интервал проверки состояния
+      timeout: 10s                   # таймаут команды проверки
+      retries: 5                     # число попыток перед объявлением неудачи
+
+
+  postgresql:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5432:5432" # Порт, на котором PostgreSQL слушает запросы
+    environment:
+      POSTGRES_PASSWORD: gjcnuhz # Пароль для доступа к базе данных
+      POSTGRES_USER: postgres # Имя пользователя для доступа к базе данных
+      POSTGRES_DB: postgres # Имя базы данных

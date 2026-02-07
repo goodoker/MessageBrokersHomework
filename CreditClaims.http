@@ -1,0 +1,63 @@
+### Пуляем заявку №1
+POST http://localhost:8080/api/credit-claims
+Content-Type: application/json
+
+{
+    "amount": 100000.94,
+    "term":12,
+    "income": 65532.00,
+    "currentCreditLoad": 10000.94,
+    "currentCreditRating": 900
+}
+
+### Пуляем заявку №2
+POST http://localhost:8080/api/credit-claims
+Content-Type: application/json
+
+{
+    "amount": 1000000.94,
+    "term":36,
+    "income": 65532.00,
+    "currentCreditLoad": 10000.94,
+    "currentCreditRating": 900
+}
+
+### Пуляем заявку №3
+POST http://localhost:8080/api/credit-claims
+Content-Type: application/json
+
+{
+    "amount": 5000000.94,
+    "term":180,
+    "income": 65532.00,
+    "currentCreditLoad": 10000.94,
+    "currentCreditRating": 900
+}
+
+### Пуляем заявку №4
+POST http://localhost:8080/api/credit-claims
+Content-Type: application/json
+
+{
+    "amount": 7000000.94,
+    "term":360,
+    "income": 65532.00,
+    "currentCreditLoad": 10000.94,
+    "currentCreditRating": 900
+}
+
+### Получаем все заявки как JSON - для быстрого просмотра
+GET http://localhost:8080/api/credit-claims
+
+### Получаем заявку с id=2 (есть в базе) как JSON
+GET http://localhost:8080/api/credit-claims/2
+
+### Получаем заявку с id=6 (нету в базе) как JSON
+GET http://localhost:8080/api/credit-claims/6
+
+### Получаем статус заявки с id=2 (есть в базе)
+GET http://localhost:8080/api/credit-claims/2/status
+
+### Получаем статус заявки с id=6 (нету в базе)
+GET http://localhost:8080/api/credit-claims/6/status
+
